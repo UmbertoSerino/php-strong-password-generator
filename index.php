@@ -1,3 +1,10 @@
+<?php
+include_once __DIR__ . '/function/function.php';
+// ci creiamo una variabile vuota dove andremo ad inserire la nostra password
+$genPassword = '';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strong Password Generator</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- MyStyle -->
     <link rel="stylesheet" href="./style/style.css">
 </head>
@@ -17,6 +23,17 @@
         <section class="container">
             <h1 class="text-center">Strong Password Generator</h1>
             <h2 class="text-center text-white mb-5">Genera una password sicura</h2>
+            <article class="container bg-white mb-5 p-2">
+                <?php if (is_numeric($_GET['psw-length']) && isset($_GET['psw-length'])) { ?>
+                    <div>
+                        <p>Molto bene</p>
+                    </div>
+                <?php } else { ?>
+                    <div>
+                        <p>Inserisci un valore</p>
+                    </div>
+                <?php } ?>
+            </article>
             <article class="container bg-white rounded">
                 <!-- Form -->
                 <form class="pb-3" action="./index.php" method="GET">
@@ -26,7 +43,8 @@
                             <label for="inputPassword6" class="col-form-label">Lughezza Password:</label>
                         </div>
                         <div class="col-auto ps-0">
-                            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="psw-length">
+                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="psw-length">
+
                         </div>
                         <!-- Checkbox Radius -->
                         <div class="row mb-3">
@@ -79,5 +97,3 @@
 </body>
 
 </html>
-
-<?php
