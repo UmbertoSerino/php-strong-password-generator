@@ -11,8 +11,12 @@ function funGenPassword(string $passwordLength)
 
     // calcoliamo la lunghezza di letterdown
     $letterDownLength = strlen($letterDown);
+    $letterUpLength = strlen($letterDown);
+    $numberLength = strlen($number);
+    $symbolLength = strlen($symbol);
 
     for ($i = 0; $i < $passwordLength; $i++) {
+
         // sovrascrivimo genPass con i caratteri randomici di letterDown
         $genPassword .= $letterDown[rand(0, $letterDownLength - 1)];
     }
