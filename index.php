@@ -34,9 +34,16 @@ var_dump('password generata:' . ' ' . $genPassword);
         <section class="container">
             <h1 class="text-center">Strong Password Generator</h1>
             <h2 class="text-center text-white mb-5">Genera una password sicura</h2>
+            <?php if (empty($genPassword)) { ?>
+                <div class="alert alert-warning" role="alert">
+                    Compila i dati correttamente!
+                </div>
+            <? } else { ?>
+                <div class="alert alert-success" role="alert">
+                    Generazione password eseguita
+                </div>
+            <?php } ?>
             <article class="container bg-white mb-5 p-2">
-            </article>
-            <article class="container bg-white rounded">
                 <!-- Form -->
                 <form class="pb-3" action="./index.php" method="GET">
                     <div class="row g-3 align-items-center">
