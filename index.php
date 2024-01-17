@@ -2,7 +2,18 @@
 include_once __DIR__ . '/function/function.php';
 // ci creiamo una variabile vuota dove andremo ad inserire la nostra password
 $genPassword = '';
-
+// verifichiamo se la chiamata non è vuota e se è stato inserito un numero
+if (isset($_GET['psw-length']) && is_numeric($_GET['psw-length'])) {
+    // salviamo il dato
+    $passwordLength = $_GET['psw-length'];
+    $genPassword = funGenPassword($passwordLength);
+} else {
+    // altrimenti
+    $passwordLength = $_GET['psw-length'];
+    echo 'errore';
+};
+var_dump('numero inserito:' . ' ' . $passwordLength);
+var_dump('password generata:' . ' ' . $genPassword);
 ?>
 
 <!DOCTYPE html>
@@ -24,15 +35,6 @@ $genPassword = '';
             <h1 class="text-center">Strong Password Generator</h1>
             <h2 class="text-center text-white mb-5">Genera una password sicura</h2>
             <article class="container bg-white mb-5 p-2">
-                <?php if (is_numeric($_GET['psw-length']) && isset($_GET['psw-length'])) { ?>
-                    <div>
-                        <p>Molto bene</p>
-                    </div>
-                <?php } else { ?>
-                    <div>
-                        <p>Inserisci un valore</p>
-                    </div>
-                <?php } ?>
             </article>
             <article class="container bg-white rounded">
                 <!-- Form -->
@@ -68,19 +70,19 @@ $genPassword = '';
                         <div class="row">
                             <div class="offset-6 col-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="letter">
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Lettere
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="number">
                                     <label class="form-check-label" for="flexCheckChecked">
                                         Numeri
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                    <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="symbol">
                                     <label class="form-check-label" for="flexCheckChecked">
                                         Simboli
                                     </label>
