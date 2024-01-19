@@ -3,23 +3,25 @@ include_once __DIR__ . '/function/function.php';
 // ci creiamo una variabile vuota dove andremo ad inserire la nostra password
 $genPassword = '';
 // verifichiamo se la chiamata non è vuota e se è stato inserito un numero
+$callLetterUpOn = isset($_GET['letter']);
+$callNumberOn = isset($_GET['number']);
+$callSymbolOn = isset($_GET['symbol']);
+$callRepeat = isset($_GET['repeat']);
 if (isset($_GET['psw-length']) && is_numeric($_GET['psw-length'])) {
     // salviamo il dato
     $passwordLength = $_GET['psw-length'];
-    $genPassword = funGenPassword($passwordLength);
+    $genPassword = funGenPassword($passwordLength, $callLetterUpOn, $callNumberOn, $callSymbolOn);
 } else {
     // altrimenti
     $passwordLength = $_GET['psw-length'];
     echo 'errore';
 };
-$callLetterOn = isset($_GET['letter']);
-$callNumberOn = isset($_GET['number']);
-$callSymbolOn = isset($_GET['symbol']);
 var_dump('numero inserito:' . ' ' . $passwordLength);
 var_dump('password generata:' . ' ' . $genPassword);
 var_dump('valore number' . ' ' . $callNumberOn);
-var_dump('valore letter' . ' ' . $callLetterOn);
+var_dump('valore letter' . ' ' . $callLetterUpOn);
 var_dump('valore symbol' . ' ' . $callSymbolOn);
+var_dump('valore repeat' . ' ' . $callRepeat);
 
 ?>
 
@@ -73,11 +75,11 @@ var_dump('valore symbol' . ' ' . $callSymbolOn);
                             </div>
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="repeat" id="flexRadioDefault1" value="1">
                                     <label for="">Sì</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                    <input class="form-check-input" type="radio" name="repeat" id="flexRadioDefault2" value="0">
                                     <label for="">No</label>
                                 </div>
                             </div>
@@ -106,8 +108,8 @@ var_dump('valore symbol' . ' ' . $callSymbolOn);
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary">Invia</button>
-                    <button type="button" class="btn btn-secondary">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                    <button type="reset" class="btn btn-secondary">Annulla</button>
                 </form>
             </article>
         </section>
